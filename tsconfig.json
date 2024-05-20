@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+      "skipLibCheck": true,
+      "module": "ESNext",
+      "moduleResolution": "bundler",
+      "target": "ESNext",
+      "isolatedModules": true,
+      "esModuleInterop": true,
+      "noEmit": true,
+      "outDir": "dist",
+      "lib": ["esnext"],
+      "types": ["node"],
+      "baseUrl": "./"
+    },
+    "exclude": [
+      "node_modules",
+      "dist" // Add any other directories that should be excluded
+    ],
+    "include": [
+      "src/**/*.ts"
+, "app.ts"    ]
+  }
+  
