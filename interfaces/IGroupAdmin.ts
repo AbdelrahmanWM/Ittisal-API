@@ -1,6 +1,6 @@
 import { IUser } from "./IUser";
 
-export interface IUserAdmin extends  IUser{
+export interface IGroupAdmin extends  IUser{
     groups: string[];
 }
 
