@@ -29,3 +29,15 @@ export const user_detail = async (req: Request, res: Response): Promise<void> =>
         sendErrorResponse(res, "MongoDB related error.", error);
     }
 };
+
+export const user_create = async (req: Request, res: Response): Promise<void> => {
+    const userData:IUser = req.body;
+    try {
+        const user = new User(userData);
+        await user.save();
+        sendSuccessResponse(res, "Successfully added the user.", user, 200);
+    } catch (error) {
+
+        sendErrorResponse(res, "MongoDB related error.", error);
+    }
+};
