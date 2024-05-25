@@ -3,10 +3,15 @@ import debugModule from "debug";
 import http from 'http';
 import { connectDB } from '../databaseConfiguration/mongodb';
 import dotenv from 'dotenv';
-dotenv.config();
+
 
 const debug = debugModule('backend:server');
-
+const env = process.env.NODE_ENV || 'development';
+if(env == 'test'){
+  dotenv.config({path:'.env.test'});
+}else{
+  dotenv.config({path:'.env'});
+}
 /**
  * Get port from environment and store in Express.
  */
