@@ -18,6 +18,8 @@
     "dist" // Add any other directories that should be excluded
   ],
   "include": [
-    "./bin/www"
+    "./bin/www",
+    "*.ts",
+
   ]
 }
