@@ -42,3 +42,32 @@ export const user_create = async (req: Request, res: Response): Promise<void> =>
         sendErrorResponse(res, "MongoDB related error.", error);
     }
 };
+
+export const user_update = async(req:Request, res: Response): Promise<void> => {
+    const updates = req.body;
+    const userId = req.params.userId;
+    try{
+        const user:IUser|null = await User.findByIdAndUpdate(userId,updates,{new: true});
+        if (!user || user.role!='user')  {
+            return sendErrorResponse(res, "User not found.", { code: "NO_USER_FOUND" }, 404);
+        }
+        sendSuccessResponse(res, "Successfully updated user details.", user, 200);
+
+    }catch(error){
+        sendErrorResponse(res, "MongoDB related error.", error);
+    }
+}
+
+export const user_delete = async(req:Request, res:Response):Promise<void> => {
+    const userId = req.params.userId;
+    try{
+        const user:IUser|null = await User.findByIdAndDelete(userId);
+        if (!user || user.role!='user')  {
+            return sendErrorResponse(res, "User not found.", { code: "NO_USER_FOUND" }, 404);
+        }
+        sendSuccessResponse(res, "Successfully deleted the user.", user, 200);
+
+    }catch(error){
+        sendErrorResponse(res, "MongoDB related error.", error);
+    }
+}
